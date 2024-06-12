@@ -21,10 +21,9 @@ match insert:
             releaseDate = input("Godina izdanja: ")
             genre = input("Žanr: ")
             book = Book(title, author, releaseDate, genre)
-            library.add(book)
+            library.addBook(book)
             print("Vaša knjiga je uspešno dodata u biblioteku.\n")
             i = i + 1
 
     case _:
         print("Molimo Vas odaberite validnu opciju.\n")
-        
