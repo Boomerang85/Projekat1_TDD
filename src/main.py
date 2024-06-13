@@ -3,7 +3,7 @@ from library import Library
 
 library = Library()
 
-insert = input("\nDobrodošli u biblioteku. Šta biste želeli da uradite? \n\n1) Dodaj knjigu \n2) Pretraži biblioteku\n")
+insert = input("\nDobrodošli u biblioteku. Šta biste želeli da uradite? \n\n1) Dodaj knjigu \n2) Pretraži biblioteku\n3) Izmeni postojeću knjigu\n")
 
 match insert:
 
@@ -35,6 +35,35 @@ match insert:
         keyword = input("Navedite ključnu reč po kojoj želite da tražite knjigu\n")
         results = library.searchBooks(searchCriteria, keyword)
         print(results)
+
+    case "3":
+        print("Unesite trenutne podatke knjige koju želite da izmenite.")
+        title = input("\nNaziv: ")
+        author = input("\nAutor: ")
+        releaseDate = input("\nGodina izdavanja: ")
+        genre = input("\nŽanr: ")
+        book = Book(title, author, releaseDate, genre)
+
+        print("Unesite nove podatke.")
+        newTitle = input("\nNaziv: ")
+        newAuthor = input("\nAutor: ")
+        newReleaseDate = input("\nGodina izdavanja: ")
+        newGenre = input("\nŽanr: ")
+        newBook = Book(newTitle, newAuthor, newReleaseDate, newGenre)
+
+        file = open("file.txt", "r")
+        lines = file.readlines()
+        file.close()
+
+        lines = [newBook.displayAll() + '\n' if book.displayAll() in line else line for line in lines]
+
+        file = open("file.txt", "w")
+        file.writelines(lines)
+        file.close()
+
+        print("Knjiga je uspešno izmenjena.")
+
+
 
     case _:
         print("Molimo Vas odaberite validnu opciju.\n")
