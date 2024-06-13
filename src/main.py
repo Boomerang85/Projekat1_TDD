@@ -25,5 +25,10 @@ match insert:
             print("Vaša knjiga je uspešno dodata u biblioteku.\n")
             i = i + 1
 
+        file = open("file.txt", "w")
+        for object in library.objectList:
+            file.write(object.displayAll() + "\n")
+        file.close()
+
     case _:
         print("Molimo Vas odaberite validnu opciju.\n")
