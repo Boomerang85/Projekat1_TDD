@@ -3,7 +3,7 @@ from library import Library
 
 library = Library()
 
-insert = input("\nDobrodošli u biblioteku. Šta biste želeli da uradite? \n\n1) Dodaj knjigu \n")
+insert = input("\nDobrodošli u biblioteku. Šta biste želeli da uradite? \n\n1) Dodaj knjigu \n2) Pretraži biblioteku\n")
 
 match insert:
 
@@ -29,6 +29,12 @@ match insert:
         for object in library.objectList:
             file.write(object.displayAll() + "\n")
         file.close()
+
+    case "2":
+        searchCriteria = input("Navedite po čemu želite da tražite knjigu. Precizno napišite naslov, autor, godina izdavanja ili zanr\n")
+        keyword = input("Navedite ključnu reč po kojoj želite da tražite knjigu\n")
+        results = library.searchBooks(searchCriteria, keyword)
+        print(results)
 
     case _:
         print("Molimo Vas odaberite validnu opciju.\n")

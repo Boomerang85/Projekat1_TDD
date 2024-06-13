@@ -35,5 +35,5 @@ class Library:
                         results.append(bookData)
 
                 case _:
-                    return 0
+                    return "Uneta reč nije validna."
             return results
