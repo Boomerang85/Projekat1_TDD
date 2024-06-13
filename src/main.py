@@ -3,7 +3,7 @@ from library import Library
 
 library = Library()
 
-insert = input("\nDobrodošli u biblioteku. Šta biste želeli da uradite? \n\n1) Dodaj knjigu \n2) Pretraži biblioteku\n3) Izmeni postojeću knjigu\n")
+insert = input("\nDobrodošli u biblioteku. Šta biste želeli da uradite? \n\n1) Dodaj knjigu \n2) Pretraži biblioteku\n3) Izmeni postojeću knjigu\n4) Obriši knjigu\n\n")
 
 match insert:
 
@@ -63,7 +63,24 @@ match insert:
 
         print("Knjiga je uspešno izmenjena.")
 
+    case "4":
+        print("Unesite podatke knjige koju želite da izbrišete.")
+        title = input("\nNaziv: ")
+        author = input("\nAutor: ")
+        releaseDate = input("\nGodina izdavanja: ")
+        genre = input("\nŽanr: ")
+        book = Book(title, author, releaseDate, genre)
 
+        file = open("file.txt", "r")
+        lines = file.readlines()
+        file.close()
+
+        file = open("file.txt", "w")
+        for line in lines:
+            if line.strip() != book.displayAll().strip():
+                file.write(line)
+
+        print("Knjiga je uspešno obrisana.")
 
     case _:
         print("Molimo Vas odaberite validnu opciju.\n")
